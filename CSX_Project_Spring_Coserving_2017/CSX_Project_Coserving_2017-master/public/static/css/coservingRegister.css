@@ -1,0 +1,242 @@
+.register-top {
+    margin-top: 150px;
+}
+
+.register-panda {
+    height: 80px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.register-title {
+    text-align: center;
+    color: #f38181;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.register-page {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    border-radius: 30px;
+    max-width: 500px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.coserving-label {
+    font-size: 15px;
+    font-weight: 700;
+    border: 2px solid;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.label-username {
+    border-color: #f38181;
+    color: #f38181;
+}
+
+.label-username:hover {
+    background-color: #f38181;
+    color: white;
+    -webkit-transition: background-color 0.6s ease;
+    -moz-transition: background-color 0.6s ease;
+    -o-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease;
+}
+
+.label-email {
+    border-color: #77ace0;
+    color: #77ace0;
+}
+
+.label-email:hover {
+    background-color: #77ace0;
+    color: white;
+    -webkit-transition: background-color 0.6s ease;
+    -moz-transition: background-color 0.6s ease;
+    -o-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease;
+}
+
+.label-password {
+    border-color: #95e1d3;
+    color: #95e1d3;
+}
+
+.label-password:hover {
+    background-color: #95e1d3;
+    color: white;
+    -webkit-transition: background-color 0.6s ease;
+    -moz-transition: background-color 0.6s ease;
+    -o-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease;
+}
+
+.label-password-2 {
+    border-color: #c87cd8;
+    color: #c87cd8;
+}
+
+.label-password-2:hover {
+    background-color: #c87cd8;
+    color: white;
+    -webkit-transition: background-color 0.6s ease;
+    -moz-transition: background-color 0.6s ease;
+    -o-transition: background-color 0.6s ease;
+    transition: background-color 0.6s ease;
+}
+
+.form input {
+    outline: 0;
+    width: 80%;
+    border: 0;
+    margin: 0 0 15px;
+    margin-left: 15px;
+    border-bottom: 3px;
+    border-bottom-style: solid;
+    border-color: #f38181;
+    padding: 13px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form input::placeholder {
+    color: #c1bfbc;
+}
+
+#email {
+    border-bottom: 3px;
+    border-bottom-style: solid;
+    border-color: #77ace0;
+}
+
+#account_pw {
+    border-bottom: 3px;
+    border-bottom-style: solid;
+    border-color: #95e1d3;
+}
+
+#password {
+    border-bottom: 3px;
+    border-bottom-style: solid;
+    border-color: #95e1d3;
+}
+
+#confirm_password {
+    border-bottom: 3px;
+    border-bottom-style: solid;
+    border-color: #c87cd8;
+}
+
+.form button {
+    text-transform: uppercase;
+    outline: 0;
+    background: #95e1d3;
+    border-radius: 30px;
+    width: 60%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+    background: #0dba98;
+}
+
+.form .message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+}
+
+.form .message a {
+    color: #95e1d3;
+    text-decoration: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.container:before,
+.container:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container .info {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.container .info h1 {
+    margin: 0 0 15px;
+    padding: 0;
+    font-size: 36px;
+    font-weight: 300;
+    color: #1a1a1a;
+}
+
+.container .info span {
+    color: #4d4d4d;
+    font-size: 12px;
+}
+
+.container .info span a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.container .info span .fa {
+    color: #EF3B3A;
+}
+
+body {
+    background-image: url("../img/CoServingBg_01.jpg");
+    background-size: 100% auto;
+    background-repeat: repeat;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    background-image: url("../img/CoServingBg_01.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    no-repeat center center fixed;
+}
+
+label {
+    font-weight: normal;
+}
+
+.linkToLogin:hover {
+    font-weight: 700;
+}
+
+.linkToLogin {
+    display: block;
+}

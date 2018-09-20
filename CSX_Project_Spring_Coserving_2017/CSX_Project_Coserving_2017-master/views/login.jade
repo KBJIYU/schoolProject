@@ -1,0 +1,49 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    |     
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    |     
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    |     
+    meta(name="description", content="")
+    |     
+    meta(name="author", content="kbjiyu")
+    |     
+    title CoServing-牽起你我的心橋
+    // Bootstrap Core CSS
+    link(href="./static/vendor/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+    // Theme CSS
+    link(href="./static/css/coservingLogin.css", rel="stylesheet")
+    // Custom Fonts
+    link(href="./static/vendor/font-awesome/css/font-awesome.min.css", rel="stylesheet", type="text/css")
+    |     
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:400,700", rel="stylesheet", type="text/css")
+    |     
+    link(href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic", rel="stylesheet", type="text/css")
+  .login-top
+    img.login-panda(src="./static/img/CoServingPanda_2.png")
+    |     
+    p.login-title  LOGIN IN COSERVING 
+  .login-container
+    .login-background
+      .form
+        form.login-form(action="", method="post")
+          // <label for="username">用戶名稱：</label>
+          input#username(type="text", placeholder="Email", name="logemail")
+          // <label for="password">用戶密碼：</label>
+          input#password(type="password", placeholder="Password", name="logpassword")
+          |                 
+          button(type="submit", value="LOGIN NOW") Press For CoServing
+          // link to the Register page
+          p.message
+            a.linkToRegester(href="/register") Not Registered?
+  // jQuery
+  script(src="./static/vendor/jquery/jquery.min.js")
+  // Bootstrap Core JavaScript
+  script(src="./static/vendor/bootstrap/js/bootstrap.min.js")
+  // Plugin JavaScript
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js")
+  // Theme JavaScript
+  script(src="./static/js/freelancer.min.js")

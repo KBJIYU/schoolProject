@@ -1,0 +1,452 @@
+    /* Global Styles 全域設置 */
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif, 'cwTeXHei', serif;
+}
+
+.video-text {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    position: absolute;
+    z-index: 999;
+}
+
+.text-vertical-center {
+    position: relative;
+    top: 30%;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+}
+
+.text-vertical-center h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 4.5em;
+    font-weight: 500;
+}
+
+
+/* Button Styles 按鈕樣式 */
+
+
+/* wtf is going on??*/
+
+#to-top {
+    display: none;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    padding: 3px;
+}
+
+.text-vertical-center>.btn-dark {
+    border: 2px solid;
+    border-radius: 20px;
+}
+
+.btn-dark {
+    border-radius: 0;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.btn-dark:hover, .btn-dark:focus, .btn-dark:active {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.btn-light {
+    border-radius: 0;
+    color: #333;
+    background-color: rgb(255, 255, 255);
+}
+
+.btn-light:hover, .btn-light:focus, .btn-light:active {
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* Custom Horizontal Rule 線條設置 */
+
+hr.small {
+    max-width: 100px;
+}
+
+
+/* Side Menu 導引列*/
+
+#sidebar-wrapper {
+    z-index: 9999;
+    position: fixed;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    transform: translateX(250px);
+    overflow-y: auto;
+    background: #222;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+    height: 55px;
+    font-size: 18px;
+    line-height: 55px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+    color: #999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+#menu-toggle {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#sidebar-wrapper.active {
+    right: 250px;
+    width: 250px;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
+
+.toggle {
+    margin: 5px 5px 0 0;
+}
+
+
+/* navbar-jog*/
+
+#navbar-jog {}
+
+
+/* Header 首頁*/
+
+.header {
+    display: table;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: url(../img/bg.jpg) no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.section-topic {
+    margin-bottom: 10px;
+}
+
+.section-topic-color2 {
+    height: 10px;
+}
+
+
+/* About 關於慢跑*/
+
+#tree-01 {
+    position: absolute;
+    display: inline-block;
+    height: 100%;
+    left: -10%;
+    top: 655px;
+}
+
+.about {
+    background-image: url(../img/bg-3.jpg);
+}
+
+.about>.section-topic-color2 {
+    background-color: #303F9F;
+}
+
+.about-item {
+    border-radius: 30px;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -ms-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+}
+
+.about-item-container:hover .about-item {
+    opacity: .35;
+    /*-webkit-transform: scale(.95);
+    -moz-transform: scale(.95);
+    -ms-transform: scale(.95);
+    -o-transform: scale(.95);
+    transform: scale(.95);*/
+}
+
+.about-item-container .about-item:hover {
+    opacity: 1;
+    /*-webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);*/
+}
+
+#about-sun-item {
+    color:#ffed00 ;
+}
+
+#about-mark-item {
+    color:#C3272B ;
+}
+
+#about-air-item {
+    color:#1F4788 ;
+}
+
+#about-chart-item {
+    color:#26A65B ;
+}
+
+#about-shiny-item {
+    color:#ec8e00 ;
+}
+
+#about-conclusion-item {
+    color:#b669b3 ;
+}
+
+.title-info {
+    background-color: #6C7A89
+}
+
+
+/*about-info 區  default value hidden */
+
+.about-info-item {
+    display: none;
+    height: 300px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.about-info-item-1 {
+    display: inline-block;
+}
+
+.arrow_box {
+    position: relative;
+    background: rgba(186, 186, 186, 0.48);
+    border: 2px solid #6C7A89;
+}
+
+.arrow_box:after, .arrow_box:before {
+    bottom: 100%;
+    left: 11%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+
+/*箭頭的設置方法*/
+
+.arrow_box:after {
+    border-color: rgba(0, 0, 0, 0);
+    border-bottom-color: #white;
+    border-width: 15px;
+    margin-left: -15px;
+}
+
+.arrow_box:before {
+    border-color: rgba(108, 122, 137, 0);
+    border-bottom-color: #6C7A89;
+    border-width: 21px;
+    margin-left: -21px;
+}
+
+
+/* Services 地圖分析*/
+
+.services {
+    height: auto;
+}
+
+.services>.section-topic-color2 {
+    background-color: #303F9F;
+}
+
+.services>.section-topic {
+    background-color:
+}
+
+.map-service {
+    height: 400px;
+    padding: 10px;
+}
+
+.map-service-bar {
+    border-color: rgb(115, 108, 109);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 15px;
+}
+
+#map, #map-3 {
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.map-info-container {
+    padding: 0px;
+}
+
+@media(max-width:768px) {
+    .map {
+        height: 75%;
+    }
+}
+
+.map iframe {
+    pointer-events: none;
+}
+
+
+/* map地圖顯示的資訊 css */
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+}
+
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+
+/* Google定位地圖暫定。*/
+
+.map-location {
+    height: 500px;
+    background-color: white;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-color: rgb(115, 108, 109);
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 15px;
+}
+
+.map-location-info {
+    height: 100%;
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+}
+
+.map-location-map {
+    height: 100%;
+    padding: 10px;
+}
+
+#map-2 {
+    height: 100%;
+}
+
+.controls {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 300px;
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+}
+
+.pac-container {
+    font-family: Roboto;
+}
+
+#type-selector {
+    color: #fff;
+    background-color: #4d90fe;
+    padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+#target {
+    width: 345px;
+    /* Rocket!!!*/

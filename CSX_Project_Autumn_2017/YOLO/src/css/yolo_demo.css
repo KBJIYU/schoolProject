@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css?family=Iceland');
+body {
+    background-color: #222222;
+    background: repeating-linear-gradient(-45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+}
+
+.main-show {
+    width: 100%;
+    margin: auto;
+}
+
+.showme{
+    text-align:center;
+    width:100%;
+    position: absolute;
+    top:20%;
+    display: none;
+    display: inline;
+}
+
+.hidden {
+    display:none;
+}
+
+.container-fluid {
+    height: 100vh;
+}
+
+
+/*Neon*/
+
+p {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 30em;
+    margin-top: 40vh !important;
+}
+
+a {
+    display: inline-block;
+    text-decoration: none;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+p:nth-child(1) a {
+    color: #fff;
+    font-family: 'Iceland', cursive;
+    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+    animation: neon1 1.5s ease-in-out infinite alternate;
+}
+
+p:nth-child(1) a:hover {
+    color: #228DFF;
+    -webkit-animation: none;
+    -moz-animation: none;
+    animation: none;
+}
+
+p a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/*glow for webkit*/
+
+@-webkit-keyframes neon1 {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
+}
+
+
+/*glow for mozilla*/
+
+@-moz-keyframes neon1 {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
+}
+
+
+/*glow*/
+
+@keyframes neon1 {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
+}
+
+
+/*REEEEEEEEEEESPONSIVE*/
+
+
+/* // Small devices (landscape phones, 576px and up) */
+
+@media (min-width: 576px) {
+    p {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 25em;
+        margin-top: 5vh !important;
+    }
+    #yolo_man {
+        display: block;
+        z-index: 0;
+        position: absolute;
+        top: 20%;
+        left: 40%;
+        height: 50vh;
+    }
+}
+
+@media (max-width: 650px) {
+    #container {
+        width: 100%;
+    }
+    p {
+        font-size: 3.5em;
+    }
+    #yolo_man {
+        display: block;
+        z-index: 0;
+        position: absolute;
+        top: 40%;
+        left: 45%;
+        height: 20vh;
+    }
+}
+
+
+/* // Medium devices (tablets, 768px and up) */
+
+@media (min-width: 768px) {
+    p {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 20em;
+        margin-top: 14vh !important;
+    }
+    #yolo_man {
+        display: block;
+        z-index: 0;
+        position: absolute;
+        top: 21%;
+        left: 40%;
+        height: 50vh;
+    }
+}
+
+
+/* // Large devices (desktops, 992px and up) */
+
+@media (min-width: 992px) {
+    p {
+        text-align: center;
+        vertical-align: middle;
+        font-size: 17em;
+        margin-top: 15vh !important;
+    }
+    #yolo_man {
+        display: block;
+        z-index: 0;
+        position: absolute;
+        top: 25%;
+        left: 45%;
+        height: 55vh;
+        border: 15px solid;
+        /* box-shadow: 0 0 20px yellow, 0 0 35px yellow, 0 0 40px yellow, 0 0 50px yellow, 0 0 75px yellow; */
+        padding: 1vh;
+    }
+}

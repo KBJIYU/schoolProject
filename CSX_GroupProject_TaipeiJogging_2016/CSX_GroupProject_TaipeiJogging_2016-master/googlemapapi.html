@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- This stylesheet contains specific styles for displaying the map
+         on this page. Replace it with your own styles as described in the
+         documentation:
+         https://developers.google.com/maps/documentation/javascript/tutorial -->
+    <!-- <link rel="stylesheet" href="/maps/documentation/javascript/demos/demos.css"> -->
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            margin: 30px;
+            padding: 0;
+        }
+        /*地圖大小*/
+        
+        #map {
+            height: 50%;
+        }
+    </style>
+    <script>
+        function $i(id) {
+            return document.getElementById(id);
+        }
+
+        function $n(id) {
+            return document.getElementsByName(name);
+        }
+
+        function $c(id) {
+            return document.getElementsByClass(className);
+        }
+
+        function $t(id) {
+            return document.getElementsByClass(tagName);
+        }
+    </script>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <!--定義地圖-->
+    <div id="map"></div>
+    <!--定義文字-->
+    <p>1. 請輸入地址，一行輸入一個地址</p>
+    <p>
+        <textarea rows="2" name="S1" cols="67" id="source">台北市信義區市府路1號</textarea>
+    </p>
+    <p>2. 請選擇輸出要不要加入地址? <input type="checkbox" id="c" name="c" value="ON">加上</p>
+    <p>
+        3. 點選 <input type="button" value="開始轉換" name="B1" onclick="trans();">
+    </p>
+    <p>4. 地址轉換經緯度結果如下 (格式：Latitude,Longitude)</p>
+    <p>
+        <textarea rows="2" name="S2" cols="67" id="target"></textarea>
+    </p>
+    <div id="msg"></div>
+    <div id="tloc"></div>
+    <!--使用ga.js，激活google分析來追蹤網站資訊-->
+    <script type="text/javascript">     
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-1478416-8']);
+        _gaq.push(['_setDomainName', 'uhooamber.com']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script');ga.type = 'text/javascript';ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <!--JQuery語法-->
+    <script>
+        var i;
+        var split;
+
+        function trans() {                          //設定按下按鈕後的執行動作
+            i = 0;
+            $("#target").val("");                   //設置被選定的元素值
+            var content = $("#source").val();       //返回地址值
+            split = content.split("\n");            //讀到換行後切斷
+            delayedLoop();                          //呼叫下面函式
+        }
+
+        function delayedLoop() {                    
+            addressToLatLng(split[i]);
+            if (++i == split.length) {              //確認輸入的地址已經跑完
+                return;
+            }
+            window.setTimeout(delayedLoop, 1500);   //重新呼叫此函數直到if條件為真就跳出
+        }
+
+        function addressToLatLng(addr) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({"address": addr}, function(results, status) {
+                if ($("#c").attr('checked')) {//確認是否有按到
+                    addr = addr + "=";
+                } else {
+                    addr = "";
+                }
+                if (status == google.maps.GeocoderStatus.OK) {
+                    var content = $("#target").val();
+                    $("#target").val(content + addr + results[0].geometry.location.lat() + "," + results[0].geometry.location.lng() + "\n");
+                    // saveloc = "lat: " + results[0].geometry.location.lat() + "," + "lng: " + results[0].geometry.location.lng();
+                    // console.log(saveloc);
+                    // document.getElementById('tloc').innerHTML = saveloc;
+                } else {
+                    var content = $("#target").val();
+                    $("#target").val(content + addr + "查無經緯度" + "\n");
+                }
+                //傳入數值
+                setNewPlace();
+            });
+            
+        }
+        
+        function setNewPlace(){
+            loc = $("#target").val();
+            a = loc.split(",");
+            console.log(a);
+            var map_canvas = document.getElementById('map');
+            var map_options = {
+                center: new google.maps.LatLng(a[0], a[1]),
+                zoom:16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+        
+            var map = new google.maps.Map(map_canvas, map_options)
+        
+            var marke = new google.maps.Marker({    
+                    position: new google.maps.LatLng(a[0], a[1]),
+                    title:'',
+                    map:map 
+            });
+            google.maps.event.addDomListener(window, 'load', setNewPlace);
+        }
+        
+        var ori_lat = 25.0169587;
+        var ori_lng = 121.5338507;
+        var des_lat = 25.039;
+        var des_lng = 121.553;
+
+        function initMap() {
+            var ori = {
+                lat: ori_lat,
+                lng: ori_lng
+            };
+            
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: ori,
+                scrollwheel: false,
+                zoom: 7
+            });
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+                map: map
+            });
+            var des = {
+                lat: des_lat,
+                lng: des_lng
+            };
+            // Set destination, origin and travel mode.
+            var request = {
+                destination: des,
+                origin: ori,
+                travelMode: 'WALKING'
+            };
+            // Pass the directions request to the directions service.
+            var directionsService = new google.maps.DirectionsService();
+            directionsService.route(request, function(response, status) {
+                if (status == 'OK') {
+                    // Display the route on the map.
+                    directionsDisplay.setDirections(response);
+                    var route = response.routes[0];
+                    // 取得距離
+                    var Distance=route.legs[0].distance.text;
+                    // 取得路徑大約時間
+                    var Duration=route.legs[0].duration.text;
+                    
+                    document.getElementById('msg').innerHTML = Distance + ', ' + Duration ;
+                    var splitdu = Duration.split(" ");
+                    var mins = splitdu[0]*60+Number(splitdu[2]);
+                    alert(mins);
+                }
+            });
+            
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy8T0ln3ARsftyZBB76Me_13PPP9YO7mE&callback=initMap" async
+        defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
+</body>
+
+</html>

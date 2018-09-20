@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Preloader Css -->
+    <link href="css/preloader.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Lite -->
+    <link href="css/material.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="js/material.js"></script>
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/bar.css">
+    <!-- <link rel="stylesheet" href="css/photo.css"> -->
+    <link rel="stylesheet" href="css/grouptinder.css">
+    <!-- Custom CSS -->
+    <link href="css/videotest.css" rel="stylesheet">
+    <link href="css/graph-01.css" rel="stylesheet">
+    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet">
+    <link href="css/stylish-portfolio.css" rel="stylesheet" type="text/css">
+    <link href="css/index-redisin.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/earlyaccess/cwtexhei.css" rel="stylesheet" type="text/css">
+    <!-- leaflet css & js -->
+    <link href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!--  cs/d3 js -->
+    <link href="css/c3.css" rel="stylesheet" type="text/css">
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/c3.min.js"></script>
+    <script src="js/c3barchart01.js"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- info -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/utils/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <meta name="ByGroup7" content="CSgroup7">
+    <title>台北市慢跑熱點分析</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="col-md-8 text-center map-info-02">
+        <div id="map-3" data-aos="zoom-in"></div>
+    </div>
+<script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- 首頁影片video js -->
+    <!-- <script src="js/videotest.js"></script> -->
+    <!-- 地圖geojson js -->
+    <script type="text/javascript" src="js/tpeArea.geojson"></script>
+    <script type="text/javascript" src="js/tpeMrt.geojson"></script>
+    <script type="text/javascript" src="js/tpeVillage.geojson"></script>
+    <script type="text/javascript" src="js/tperiverpark.geojson"></script>
+    <!-- 地圖map區 js -->
+    <!-- <script type="text/javascript" src="js/map-01.js"></script> -->
+    <script type="text/javascript" src="js/map-04.js"></script>
+    <!-- 地圖search區 js -->
+    <script type="text/javascript" src="js/google-map-location.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- 圖表graph區 js -->
+    <script type="text/javascript " src="js/bar2.js "></script>
+    <!-- 動畫js -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/img-light-animation.js" type="text/javascript"></script>
+    <script src="js/grouptinder.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript " src="js/photo2.js "></script> -->
+    <!-- snow-js(flurry.js) -->
+    <script type="text/javascript" src="js/jquery.flurry.js"></script>
+    <!-- scroll speed -->
+    <!-- <script src="js/jquery.nicescroll.js"></script> -->
+    <script src="js/aos.js"></script>
+    <!-- cnavaschart.js -->
+    <script src="js/d3pie.min.js"></script>
+    <script src="js/piechart01.js"></script>
+    <script src="js/piechart02.js"></script>
+    <script src="js/piechart03.js"></script>
+    <script src="js/piechart04.js"></script>
+    <script src="js/c3barchart01.js"></script>
+    <!-- <script type="text/javascript" src="js/graph-01.js"></script> -->
+    <!-- 內建 JavaScript -->
+    <script>
+        AOS.init({
+            duration: 1200,
+        });
+        $(window).on('load', function() { // makes sure the whole site is loaded
+            $('#loader').fadeOut(); // will first fade out the loading animation
+            $('#loader-wrapper').delay(800).fadeOut('slow'); // will fade out the white DIV that covers the website.
+            $('body').delay(800).css({
+                'overflow': 'visible'
+            });
+        });
+        // $(document).ready(function() {
+        //     $("html").niceScroll();
+        // });
+
+        // navbar
+        (function($) {
+            $(document).ready(function() {
+                // hide .navbar first
+                $(".navbar").hide();
+                // fade in .navbar
+                $(function() {
+                    $(window).scroll(function() {
+                        // set distance user needs to scroll before we start fadeIn
+                        if ($(this).scrollTop() > 250) {
+                            $('.navbar').fadeIn();
+                        } else {
+                            $('.navbar').fadeOut();
+                        }
+                    });
+                });
+            });
+        }(jQuery));
+        // snow effect
+        $(document).ready(function() {
+            $('.home-page').flurry();
+        });
+        //switch-button change theme
+        $('#switch-1').change(function() {
+            if (this.checked) {
+                $(".home-page").css("background-color", "#103E55");
+                $("#img-title").attr("src", "img/jog-title-night.svg");
+                $("#img-grass").attr("src", "img/jog-grass-night.png");
+                $("#img-jogger").attr("src", "img/jog-2people-night.png");
+                return;
+            } else {
+                $(".home-page").css("background-color", "#93d0f2");
+                $("#img-title").attr("src", "img/jog-title-day.svg");
+                $("#img-grass").attr("src", "img/jog-grass-day.png");
+                $("#img-jogger").attr("src", "img/jog-2people-day.png");
+                return;
+            }
+        });
+        // Closes the sidebar menu
+        $("#menu-close").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Closes the sidebar menu
+        $("#sidebar-wrapper").mouseleave(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Scrolls to the selected menu item on the page
+        $(function() {
+            $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+        //#to-top button appears after scrolling
+        var fixed = false;
+        $(document).scroll(function() {
+            if ($(this).scrollTop() > 250) {
+                if (!fixed) {
+                    fixed = true;
+                    // $('#to-top').css({position:'fixed', display:'block'});
+                    $('#to-top').show("slow", function() {
+                        $('#to-top').css({
+                            position: 'fixed',
+                            display: 'inline-block'
+                        });
+                    });
+                }
+            } else {
+                if (fixed) {
+                    fixed = false;
+                    $('#to-top').hide("slow", function() {
+                        $('#to-top').css({
+                            display: 'none'
+                        });
+                    });
+                }
+            }
+        });
+        var animateTime01 = 800;
+        // #to-top的換位置功能
+        $("#to-top").click(function() {
+            $("#to-top").animate({
+                bottom: "500px"
+            }, animateTime01, function() {
+                $('#to-top').removeAttr('style')
+            })
+        });
+
+        var aboutItemAnimatetime = 150;
+        //about-info-dislay js
+        $(".about-item-1").hover(function() {
+                $(".about-info-item").hide();
+                $(".about-info-item-1").show();
+                $(".title-info").animate({
+                    backgroundColor: "#ffed00"
+                }, aboutItemAnimatetime);
+                $("#about-sun-item").css("color", "#ffed00");
+            })
+            // https://goo.gl/YdJNP9  參考一下css :after and :before rules aren't part of the DOM
+        $(".about-item-2").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-2").show();
+            $(".title-info").animate({
+                backgroundColor: "#C3272B"
+            }, aboutItemAnimatetime)
+            $("#about-mark-item").css("color", "#C3272B");
+        })
+        $(".about-item-3").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-3").show();
+            $(".title-info").animate({
+                backgroundColor: "#1F4788"
+            }, aboutItemAnimatetime)
+            $("#about-air-item").css("color", "#1F4788");
+        })
+        $(".about-item-4").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-4").show();
+            $(".title-info").animate({
+                backgroundColor: "#26A65B"
+            }, aboutItemAnimatetime)
+            $("#about-chart-item").css("color", "#26A65B");
+        })
+        $(".about-item-5").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-5").show();
+            $(".title-info").animate({
+                backgroundColor: "#ec8e00"
+            }, aboutItemAnimatetime)
+            $("#about-shiny-item").css("color", "#ec8e00");
+        })
+        $(".about-item-6").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-6").show();
+            $(".title-info").animate({
+                backgroundColor: "#b669b3"
+            }, aboutItemAnimatetime)
+            $("#about-conclusion-item").css("color", "#b669b3");
+        })
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB6wyswnvKuR00T4u3uqN2BDNB--6q5lU&callback=initMap" async defer></script>
+    <script>
+        //街景api #street-view
+        var panorama;
+
+        function initialize() {
+            var LatLng1 = {
+                lat: 24.9877249,
+                lng: 121.5591697
+            }; //木柵公園
+            var LatLng2 = {
+                lat: 25.0293227,
+                lng: 121.5359793
+            }; //大安森林公園
+            var LatLng3 = {
+                lat: 25.0346522,
+                lng: 121.52182649999997
+            }; //台灣民主紀念園區
+            var LatLng4 = {
+                lat: 25.08496576991854,
+                lng: 121.51543512421819
+            }; //百齡河濱公園
+            var LatLng5 = {
+                lat: 25.077720121388957,
+                lng: 121.53331257863037
+            }; //圓山河濱公園
+            var LatLng6 = {
+                lat: 25.074734477271235,
+                lng: 121.5616761977487
+            }; //美堤河濱公園
+            var taida = {
+                lat: 25.0169587,
+                lng: 121.5338507
+            }; //ntu
+
+            panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('street-view'), {
+                    position: LatLng2,
+                    pov: {
+                        heading: 65,
+                        pitch: 0
+                    },
+                    zoom: 1
+                });
+            //recommend map
+
+            var map = new google.maps.Map(document.getElementById('map-recommend'), {
+                zoom: 12,
+                center: LatLng2
+            });
+
+            var marker1 = new google.maps.Marker({
+                position: LatLng1,
+                map: map,
+                title: "木柵公園"
+            });
+            var marker2 = new google.maps.Marker({
+                position: LatLng2,
+                map: map,
+                title: "大安森林公園"
+            });
+            var marker3 = new google.maps.Marker({
+                position: LatLng3,
+                map: map,
+                title: "台灣民主紀念園區"
+            });
+            var marker4 = new google.maps.Marker({
+                position: LatLng4,
+                map: map,
+                title: "百齡河濱公園"
+            });
+            var marker5 = new google.maps.Marker({
+                position: LatLng5,
+                map: map,
+                title: "圓山河濱公園"
+            });
+            var marker6 = new google.maps.Marker({
+                position: LatLng6,
+                map: map,
+                title: "美堤河濱公園"
+            });
+            //marker clicker
+            map.addListener('center_changed', function() {
+                // 3 seconds after the center of the map has changed, pan back to the
+                // marker.
+                window.setTimeout(function() {
+                    map.panTo(marker3.getPosition());
+                }, 3000);
+            });
+            marker1.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker1.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng1,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker2.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker2.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng2,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker3.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker3.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng3,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker4.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker4.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng4,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker5.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker5.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng5,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker6.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker6.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng6,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRmRLd_EOocye07JIZrJwR5GTlFFb2ekQ&signed_in=true&callback=initialize"></script>
+
+</body>
+
+</html>

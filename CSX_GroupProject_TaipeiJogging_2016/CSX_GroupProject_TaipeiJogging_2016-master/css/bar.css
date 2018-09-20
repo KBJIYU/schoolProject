@@ -1,0 +1,52 @@
+
+
+
+#skills {
+	margin: 0 auto;
+	width: 50%;
+}
+
+	#skills li {
+		position: relative;
+		margin-bottom: 32px;
+		padding-left: 6px;
+	}
+
+		.bar_container,
+		.bar {	
+			position: absolute;
+			left: 0;
+			height: 15px;	
+			border-radius: 5px;
+			content: "";
+		}
+
+		.bar_container {
+			bottom: -15px;
+			width: 100%;
+			background-color: #333;
+			text-align: right;
+		}			
+
+			.bar {
+				top: 0;
+			}
+
+				.pct {
+					position: absolute;
+					top: -19px;
+					left:90px;
+					opacity: 0;
+					transition: opacity 0.3s linear;
+				}
+span{
+	 font-size: 20px;
+    font-family: inherit;
+}
+#j{
+	position: absolute;
+	right:0;
+}
+ul li{
+list-style-type:none;
+}

@@ -1,0 +1,103 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    |     
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |     
+    meta(name='description', content='')
+    |     
+    meta(name='author', content='kbjiyu')
+    |     
+    title CoServing-&#x727D;&#x8D77;&#x4F60;&#x6211;&#x7684;&#x5FC3;&#x6A4B;
+    // Bootstrap Core CSS
+    link(href='./static/vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    // Theme CSS
+    link(href='./static/css/coservingCreateEvent.css', rel='stylesheet')
+    // Custom Fonts
+    link(href='./static/vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+    |     
+    link(href='https://fonts.googleapis.com/css?family=Montserrat:400,700', rel='stylesheet', type='text/css')
+    |     
+    link(href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic', rel='stylesheet', type='text/css')
+  body
+    // Navigation
+    nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+      .container
+        // Brand and toggle get grouped for better mobile display
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#coserving-menu')
+            span.sr-only Toggle navigation
+            |                     
+            span.icon-bar
+            |                     
+            span.icon-bar
+            |                     
+            span.icon-bar
+          |                 
+          a.navbar-brand(href='#') CoServing
+        // Collect the nav links, forms, and other content for toggling
+        #coserving-menu.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/') 首頁
+            |                     
+            li
+              a(href='/createevent') 新增活動
+            |                     
+            li
+              a(href='/profile') 個人頁面
+            |                     
+            li
+              a(href='/logout') 登出
+        // /.navbar-collapse
+      // /.container
+    // Page Content
+    .container
+      // pairlist row
+      .row
+        .col-lg-12.text-center.coserving-main-info
+          .panel.panel-coserving
+            .panel-heading Create New Event
+            |                     
+            .panel-body
+              .register-container
+                .register-background
+                  .form
+                    form.register-form(action='', method='post')
+                      label.coserving-label.label-event-type.col-lg-6.col-md-6.col-sm-6.col-xs-12(for='eventtype') &#x985E;&#x578B;
+                      |                                         
+                      select#eventtype.form-control.coserving-form-control.col-lg-6.col-md-6.col-sm-6.col-xs-12(name='eventtype')
+                        option &#x9910;&#x5EF3;&#x5171;&#x4EAB;
+                        |                                             
+                        option &#x5718;&#x9AD4;&#x8CFC;&#x7269;
+                        |                                             
+                        option &#x7D04;&#x6703;&#x914D;&#x5C0D;
+                        |                                             
+                        option &#x5BB6;&#x6559;&#x914D;&#x5C0D;
+                      // <input type="text" placeholder="Event Type" name="eventtype" id="eventtype" />
+                      label.coserving-label.label-event-people.col-lg-6.col-md-6.col-sm-6.col-xs-12(for='eventpeople') &#x4EBA;&#x6578;
+                      |                                         
+                      input#eventpeople.coserving-input.col-lg-6.col-md-6.col-sm-6.col-xs-12(type='number', min='1', max='10', placeholder='Event People 1-10', name='eventpeople')
+                      |                                         
+                      label.coserving-label.label-eventpoint.col-lg-6.col-md-6.col-sm-6.col-xs-12(for='eventpoint') &#x9EDE;&#x6578;
+                      |                                         
+                      input#eventpoint.coserving-input.col-lg-6.col-md-6.col-sm-6.col-xs-12(type='number', min='50', max='20000', placeholder='Event Point 50-20000', name='eventpoint')
+                      |                                         
+                      label.coserving-label.label-eventtime.col-lg-6.col-md-6.col-sm-6.col-xs-12(for='eventtime') &#x6642;&#x9593;
+                      |                                         
+                      input#eventtime.coserving-input.col-lg-6.col-md-6.col-sm-6.col-xs-12(type='datetime-local', name='eventtime')
+                      |                                         
+                      button(type='submit', value='CREATE') CREATE EVENT
+      // pairlist /.row
+    // /.container
+  script(type='text/javascript').
+  // jQuery
+  script(src='./static/vendor/jquery/jquery.min.js')
+  // Bootstrap Core JavaScript
+  script(src='./static/vendor/bootstrap/js/bootstrap.min.js')
+  // Plugin JavaScript
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+  // Theme JavaScript
+  script(src='./static/js/freelancer.min.js')

@@ -1,0 +1,71 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    |     
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    |     
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    |     
+    meta(name="description", content="")
+    |     
+    meta(name="author", content="kbjiyu")
+    |     
+    title CoServing-牽起你我的心橋
+    // Bootstrap Core CSS
+    link(href="./static/vendor/bootstrap/css/bootstrap.min.css", rel="stylesheet")
+    // Theme CSS
+    link(href="./static/css/coservingRegister.css", rel="stylesheet")
+    // Custom Fonts
+    link(href="./static/vendor/font-awesome/css/font-awesome.min.css", rel="stylesheet", type="text/css")
+    |     
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:400,700", rel="stylesheet", type="text/css")
+    |     
+    link(href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic", rel="stylesheet", type="text/css")
+  .register-top
+    img.register-panda(src="./static/img/CoServingPanda_2.png")
+    |     
+    p.register-title  REGISTER IN COSERVING 
+  .register-container
+    .register-background
+      .form
+        form.register-form(action="", method="post")
+          label.coserving-label.label-username(for="username") 帳號
+          |                 
+          input#username(type="text", placeholder="Account Id", name="username")
+          |                 
+          label.coserving-label.label-email(for="email") 信箱
+          |                 
+          input#email(type="email", placeholder="Email Address", name="email")
+          |                 
+          label.coserving-label.label-password(for="password") 密碼
+          |                 
+          input#password(type="password", placeholder="Password", name="password")
+          |                 
+          label.coserving-label.label-password-2(for="passwordConf") 確認
+          |                 
+          input#confirm_password(type="password", placeholder="Confirm Password", name="passwordConf")
+          |                 
+          button(type="submit", value="REGISTER") PRESS FOR COSERVING
+          a.linkToLogin(href="/login") ALREADY HAVE ACCOUNT?
+  script(type="text/javascript").
+    // password checker
+    var password = document.getElementById("password"),
+    confirm_password = document.getElementById("confirm_password");
+    function validatePassword() {
+    if (password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+    confirm_password.setCustomValidity('');
+    }
+    }
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+  // jQuery
+  script(src="./static/vendor/jquery/jquery.min.js")
+  // Bootstrap Core JavaScript
+  script(src="./static/vendor/bootstrap/js/bootstrap.min.js")
+  // Plugin JavaScript
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js")
+  // Theme JavaScript
+  script(src="./static/js/freelancer.min.js")

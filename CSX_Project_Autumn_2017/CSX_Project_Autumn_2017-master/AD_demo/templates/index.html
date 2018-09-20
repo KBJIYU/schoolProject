@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <title>RAP!</title>
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.css">
+    <link rel="stylesheet" href="{% static './css/index.css'  %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    <!-- js -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/semantic-ui/2.2.9/semantic.min.js"></script>
+    <script src="{% static './js/index.js'  %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#text_input, #min_input, #mix_input, #max_input").keyup(function () {
+                $.ajax({
+                    url: "/pinin/",
+                    data: {
+                        w: $('#text_input').val(),
+                        l: $('#min_input').val(),
+                        m: $('#mix_input').val(),
+                        mm: $('#max_input').val()
+                    },
+                }).done(function (msg) {
+                    console.log(msg);
+                    $('#text_output').empty();
+                    for (i = 0; i < msg.msg.length; i++) {
+                        $('#text_output').append("<tr><td>" + msg.msg[i] + "</td></tr");
+                    }
+                });
+            });
+        })
+    </script>
+    <!-- <a href="https://www.freepik.com/free-vector/hip-hop-background_1012696.htm">Designed by Freepik</a> -->
+</head>
+
+<body style="min-width: 1300px">
+    <div style="position: relative;">
+        <img src="{% static './images/130.png'  %}" style="height:120vh;position: absolute; left:5rem;top:3rem">
+        <div class="ui grid">
+            <div class="eight wide column"></div>
+            <div class="eight wide column">
+                <div class="words" style="margin-top: 20vh;">
+                    <h1 class="neon_title" style="font-size: 15vh !important;">LETS RAP</h1>
+                    <div class="ui icon input">
+                        <span class="neon_title neon_row">WHAT 韻
+                            <input type="text" placeholder="Input word..." id="text_input">
+                        </span>
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="ui icon input">
+                        <span class="neon_title neon_row">MAX LEN
+                            <input type="text" placeholder="len..." id="max_input">
+                        </span>
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="ui icon input">
+                        <span class="neon_title neon_row">MIN LEN
+                            <input type="text" placeholder="len..." id="min_input">
+                        </span>
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="ui icon input">
+                        <span class="neon_title neon_row">MIX 韻?
+                            <input type="text" placeholder="True or False" id="mix_input">
+                        </span>
+                        <i class="search icon"></i>
+                    </div>
+                    <div class="column" style="margin-left: 75px;margin-top: 55px;">
+                        <div class="ui card">
+                            <div class="content">
+                                <div class="header">押韻字</div>
+                                <div style="height:400px;overflow-x: scroll;">
+                                    <table class="ui celled small selectable table">
+                                        <thead>
+                                            <tr>
+                                                <th>字詞</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="text_output">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

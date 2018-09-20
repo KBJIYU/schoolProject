@@ -1,0 +1,1254 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- Preloader Css -->
+    <link href="css/preloader.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Lite -->
+    <link href="css/material.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="js/material.js"></script>
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/bar.css">
+    <!-- <link rel="stylesheet" href="css/photo.css"> -->
+    <link rel="stylesheet" href="css/grouptinder.css">
+    <!-- Custom CSS -->
+    <link href="css/videotest.css" rel="stylesheet">
+    <link href="css/graph-01.css" rel="stylesheet">
+    <link href="css/stylish-portfolio.css" rel="stylesheet" type="text/css">
+    <link href="css/index-redisin.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/earlyaccess/cwtexhei.css" rel="stylesheet" type="text/css">
+    <!-- leaflet css & js -->
+    <link href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" rel="stylesheet">
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <!--  cs/d3 js -->
+    <link href="css/c3.css" rel="stylesheet" type="text/css">
+    <script src="js/d3.v3.min.js" charset="utf-8"></script>
+    <script src="js/c3.min.js"></script>
+    <script src="js/c3barchart01.js"></script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <!-- info -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/CSSPlugin.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/easing/EasePack.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.0/utils/Draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+    <meta name="ByGroup7" content="CSgroup7">
+    <title>台北市慢跑熱點分析</title>
+    <link rel="icon" href="favicon.ico"  sizes="16x16">
+    <script type="text/javascript">
+        function addressToLatLng(addr) {
+
+            var saveloc;
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                "address": addr
+            }, function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    findlat = results[0].geometry.location.lat();
+                    findlng = results[0].geometry.location.lng();
+
+                    var des_loc = ["中永和四號公園", "幸福水漾公園", "延平河濱公園(大稻埕)", "大安森林公園", "中正紀念堂", "國父紀念館", "台北田徑場", "228和平公園", "大湖公園", "景美河濱公園", "木柵河濱公園", "新月橋", "北投公園", "美堤河濱公園", "新生公園(花博)", "中央藝文公園"];
+                    var des_lat = [25.0169587,25.05176, 25.06321, 25.03336, 25.03849, 25.04108, 25.05038, 25.04323, 25.08356, 24.9884, 24.98662, 25.02819, 25.13598, 25.07679, 25.0685, 25.04524];
+                    var des_lng = [121.5338507,  121.4838, 121.5085, 121.5329, 121.5178, 121.5595, 121.551, 121.5166, 121.6024, 121.5395, 121.5451, 121.454, 121.5065, 121.5472, 121.5282, 121.5286];
+                    var allduration = [];
+                    var ori = {
+                        lat: findlat,
+                        lng: findlng
+                    };
+                    for (num = 0; num < des_lat.length; num++) {
+                        var des = {
+                            lat: 25.0169587,
+                            lng: 121.5338507
+                        };
+                        var map = new google.maps.Map(document.getElementById('map-recommend'), {
+                            center: ori,
+                            scrollwheel: false,
+                            zoom: 7
+                        });
+                        var directionsDisplay = new google.maps.DirectionsRenderer({
+                            map: map
+                        });
+                        var request = {
+                            destination: des,
+                            origin: ori,
+                            travelMode: 'WALKING'
+                        };
+                        var directionsService = new google.maps.DirectionsService();
+                        directionsService.route(request, function(response, status) {
+                            if (status == 'OK') {
+                                // Display the route on the map.
+                                directionsDisplay.setDirections(response);
+                                var route = response.routes[0];
+                                // 取得距離
+                                var Distance = route.legs[0].distance.text;
+                                // 取得路徑大約時間
+                                var Duration = route.legs[0].duration.text;
+                                var splitdu = Duration.split(" ");
+                                var mins = splitdu[0] * 60 + Number(splitdu[2]);
+                                allduration[num] = mins;
+
+                            }
+                        });
+                        var finaldes = allduration[0];
+                        var finloc = 0;
+                        for (i = 0; i < des_lat.length; i++) {
+                            if (allduration[i] < finaldes) {
+                                finaldes = allduration[i];
+                                finloc = i;
+                            }
+                        }
+                        var nearv = des_loc[finloc];
+                        console.log(nearv);
+                    }
+
+                }
+            });
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="loader-wrapper">
+        <img id="pikarun" src="img/catrunning.gif">
+        <img id="loadingimg" src="img/loading.gif">
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="navbar-jog">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#home-page">慢跑台北</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <!-- <li class="page-scroll">
+                        <a href="#title-info">選單區</a>
+                    </li> -->
+                    <li class="page-scroll">
+                        <a href="#story-section">慢跑story</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#air-section">空氣品質</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#mapService-section">慢跑hot點</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#shiny-section">天氣預測</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#conclusion-section">結論分析</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#group-section">小組介紹</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#footer-section">相關連結</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="section home-page" id="home-page">
+        <div class="switch-display-01">
+            <label id="label-switch" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                <input type="checkbox" id="switch-1" class="mdl-switch__input" checked="">
+                <span class="mdl-switch__label"></span>
+            </label>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="img/jog-title-night.svg" data-aos="fade-down" class="center-block img-responsive " id="img-title">
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden-sm hidden-xs container title-info-2 text-center" id="title-info-2">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div data-aos="fade-up" class="row about-item-container">
+                        <div class="col-md-2 col-sm-6">
+                            <div class="about-item about-item-1">
+                                <a class="btn btn-default" href="#story-section">
+                                    <span class="fa-stack fa-5x">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-sun-o fa-stack-1x" id="about-sun-item"></i>
+                                        </span>
+                                    <h4><strong>慢跑story</strong></h4>
+                                    <p>為何慢跑?</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="about-item about-item-3">
+                                <a class="btn btn-default" href="#air-section">
+                                    <span class="fa-stack fa-5x">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-fire  fa-stack-1x" id="about-air-item"></i>
+                                        </span>
+                                    <h4><strong>空氣品質</strong></h4>
+                                    <p>空氣品質影響慢跑品質。</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="about-item about-item-2">
+                                <a class="btn btn-default " href="#mapService-section">
+                                    <span class="fa-stack fa-5x">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-map-marker  fa-stack-1x" id="about-mark-item"></i>
+                                        </span>
+                                    <h4><strong>慢跑HOT點</strong></h4>
+                                    <p>跑友推薦/地圖服務</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="about-item about-item-4">
+                                <a class="btn btn-default" href="#shiny-section">
+                                    <span class="fa-stack fa-5x">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-bar-chart fa-stack-1x" id="about-chart-item"></i>
+                                        </span>
+                                    <h4><strong>資料呈現</strong></h4>
+                                    <p>shiny</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="about-item about-item-5">
+                                <a class="btn btn-default " href="#conclusion-section">
+                                    <span class="fa-stack fa-5x">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-thumbs-up fa-stack-1x" id="about-shiny-item"></i>
+                                        </span>
+                                    <h4><strong>結論<span style="font-weight:500;">分</span>析</strong></h4>
+                                    <p>重點歸納與推薦</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <a class="btn btn-default " href="#group-section">
+                                <div class="about-item about-item-6">
+                                    <span class="fa-stack fa-5x">
+                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                            <i class="fa fa-users fa-stack-1x" id="about-conclusion-item"></i>
+                                        </span>
+                                    <h4><strong>小組介紹</strong></h4>
+                                    <p>組員與爬蟲影片</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <img src="img/sun-02.png" class="img-responsive img-sun" id="img-sun"> -->
+        <img src="img/jog-grass-night.png" class="img-responsive" id="img-grass">
+        <img src="img/jog-2people-night.png" class="img-responsive  " id="img-jogger">
+        <img src="img/jog-light-01.svg" class="img-responsive  " id="img-light-1">
+        <img src="img/jog-light-02.svg" class="img-responsive img-light" id="img-light-2">
+        <img src="img/jog-light-03.svg" class="img-responsive img-light" id="img-light-3">
+        <img src="img/jog-light-01.svg" class="img-responsive img-light" id="img-light-4">
+    </div>
+
+    <div class="section story-section text-center" id="story-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12 text-center">
+                    <img src="img\img-story-title-final.png" data-aos="fade-up" class="center-block img-responsive title-image" id="img-story-title">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 hidden-md hidden-lg hidden-xl">
+                    <div class="row">
+                        <div class="col-md-6" data-aos="zoom-out">
+                            <img src="img\bg-3.jpg" class="img-responsive img-rounded img-shadow">
+                        </div>
+                        <div class="col-md-6 " data-aos="zoom-out">
+                            <h3 class="">慢跑-都市男女的健康浪漫</h3>
+                            <p class="text-center">慢跑亦稱為緩步、緩跑或緩步跑，是一種有氧運動
+                                <br> 目的在以較慢或中等的節奏來跑完一段相對較長的距離
+                                <br>以達到熱身或鍛鍊的目的
+                                <br>
+                                <br> 大多數高水平的運動員，都以慢跑來做熱身
+                                <br> 在歐美國家，尤其是在美國，澳洲和德國
+                                <br>慢跑是一項極為普及的運動~ </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" data-aos="zoom-out">
+                            <img src="img\bg.jpg" class="img-responsive img-rounded img-shadow">
+                        </div>
+                        <div class="col-md-6" data-aos="zoom-out">
+                            <h3 class="">慢跑的"時間"與"地點"</h3>
+                            <p class="text-center">
+                                慢跑是一種休閒,跑出心情,更要跑出健康。
+                                <br>藉由空氣品質資料與網友推薦的熱門跑點，
+                                <br>一起找出最適合妳/你--跑步的"時段"與"地點"。
+                                <br></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 hidden-sm hidden-xs">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="img\bg-3.jpg" data-aos="flip-left" class="img-responsive img-rounded img-shadow">
+                        </div>
+                        <div class="col-md-6" data-aos="slide-up" id="story-01">
+                            <h3 class="text-left">慢跑-都市男女的健康浪漫</h3>
+                            <p class="text-left">慢跑亦稱為緩步、緩跑或緩步跑，是一種有氧運動
+                                <br>目的在以較慢或中等的節奏來跑完一段相對較長的距離
+                                <br>以達到熱身或鍛鍊的目的
+                                <br>
+                                <br>大多數高水平的運動員，都以慢跑來做熱身
+                                <br>在歐美國家，尤其是在美國，澳洲和德國
+                                <br>慢跑是一項極為普及的運動~ </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" data-aos="slide-up">
+                            <h3 class="text-right">慢跑該注意?</h3>
+                            <p class="text-right"> 慢跑是一種休閒,跑出心情,更要跑出健康
+                                <br>藉由空氣品質資料與網友推薦的熱門跑點
+                                <br>一起找出最適合妳/你
+                                <br>--跑步的"時段"與"地點"
+                            </p>
+                        </div>
+                        <div class="col-md-6" data-aos="flip-right">
+                            <img src="img\bg.jpg" class="img-responsive img-rounded img-shadow">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section air-section text-center" id="air-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12 text-center" data-aos="fade-up">
+                    <img src="img\img-air-title-final.png" class="center-block img-responsive title-image" id="img-air-title">
+                    <p>空氣當中的汙染物等，對敏感...健康..造成影響，那到底一整天當中，適合跑步的時間到底有多少呢?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 data-aos="fade-up"><i class="fa fa-caret-down fa-1x" aria-hidden="true"></i>議題一：一天當中，適合跑步的時間有多少!?</h3>
+                    <div class="row" data-aos="zoom-out">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8 text-center air-info-0">
+                            <h4 class="word10">空氣品質說明</h4>
+                            <div class="legend-info">
+                                <div class='my-legend'>
+                                    <div class='legend-title'>PM 2.5 濃度指標</div>
+                                    <div class='legend-scale'>
+                                        <ul class='legend-labels'>
+                                            <li><span style='background:#9CFF9C;'></span>濃度0-11</li>
+                                            <li><span style='background:#31FF00;'></span>12-23</li>
+                                            <li><span style='background:#31CF00;'></span>24-35</li>
+                                            <li><span style='background:#FFFF00;'></span>36-41</li>
+                                            <li><span style='background:#FFCF00;'></span>42-47</li>
+                                            <li><span style='background:#FF9A00;'></span>48-53</li>
+                                            <li><span style='background:#FF6464;'></span>54-58</li>
+                                            <li><span style='background:#FF0000;'></span>59-64</li>
+                                            <li><span style='background:#990000;'></span>65-70</li>
+                                            <li><span style='background:#CE30FF;'></span> >71</li>
+                                        </ul>
+                                    </div>
+                                    <div class='legend-source'>空氣品質資料來源： <a target="_blank" href="http://taqm.epa.gov.tw/taqm/tw/AqiSiteMap.aspx">行政院空氣品質監測網</a></div>
+                                    <div class='legend-source'>PM2.5空氣指標及顏色分類：<a target="_blank" href="http://www.taichung.gov.tw/public/Attachment/108010/1554275_%E3%80%8C%E5%9B%A0%E6%87%89%E4%B8%8D%E5%90%8C%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E4%B9%8B%E9%81%8B%E5%8B%95%E5%BB%BA%E8%AD%B0%E3%80%8D.pdf">環境保護署-因應不同空氣品質之運動建議</a>。</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-4 text-center air-info-0" data-aos="fade-right">
+                            <h4 class="word10">空氣「差」的一天</h4>
+                            <p class="word12" style="font-style: italic">
+                                『咳咳咳...』在12/21這天，台北的空氣品質好糟:(
+                                <br> 這一天當中...有多少的時間適合跑步呢?
+                            </p>
+                            <div class="word11">資料說明：以[24小時之空氣品質資料]做[各濃度區間]之比例分布。<br> (圖中數值單位:小時)
+                            </div>
+                            <div id="pieChart-01"></div>
+                            <p>
+                                <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 古亭地區，這天當中有45%的時間適合所有人跑步。
+
+                            </p>
+                            <div id="pieChart-02"></div>
+                            <p>
+                                <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 板橋地區，這天當中有60%的時間適合所有人跑步。
+                            </p>
+                        </div>
+                        <hr class="style13 hidden-lg hidden-md hidden-sm">
+                        <div class="col-md-4 text-center air-info-0" data-aos="fade-left">
+                            <h4 class="word10">空氣「好」的一天</h4>
+                            <p class="word12" style="font-style: italic">
+                                哇哈哈哈~~氣象預報中~12/04這天空氣品質不錯呢
+                                <br> 那有多少的時間適合跑步呢~~~?
+                            </p>
+                            <div class="word11">資料說明：以[24小時之空氣品質資料]做[各濃度區間]之比例分布。<br> (圖中數值單位:小時)
+                            </div>
+                            <div id="pieChart-03"></div>
+                            <p>
+                                <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 古亭地區，全天都非常適合跑步呢!
+                            </p>
+                            <div id="pieChart-04"></div>
+                            <p>
+                                <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 板橋地區，全天都非常適合跑步呢!
+                            </p>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-12">
+                    <h3 data-aos="fade-up"><i class="fa fa-caret-down fa-1x" aria-hidden="true"></i>議題二：一天當中，哪些時段最適合跑步呢?</h3>
+                    <p data-aos="fade-up">
+                        現在我們知道了，有些日子不是"全時段"都適合跑步。但是空氣差,我還是想跑...什麼時段跑會最好呢?
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row" data-aos="zoom-out">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 text-center air-info-1">
+                                    <h4 class="word10">空氣品質的"周間"vs"周末"</h4>
+                                    <p class="word12">
+                                        空氣品質也是會"放假"的。
+                                    </p>
+                                    <div class="word11">資料說明：以[24小時之空氣品質資料]做數值折線圖。<br> 平日各時段之數值為：12月平日[各時段數值之平均]
+                                        <br> 假日各時段之數值為：12月假日[各時段數值之平均]
+                                    </div>
+                                    <div id="lineChart-00">
+                                        <iframe src="https://plotdb.io/v/chart/12503" width="100%" height="400px" frameborder="0"></iframe>
+                                    </div>
+                                    <p>
+                                        <i class="fa fa-caret-up fa-x" aria-hidden="true"></i>201612月份，板橋地區平日vs假日之空氣品質時段折線圖。
+                                    </p>
+                                    <div id="lineChart-00-1">
+                                        <iframe src="https://plotdb.io/v/chart/12504" width="100%" height="400px" frameborder="0"></iframe>
+                                    </div>
+                                    <p>
+                                        <i class="fa fa-caret-up fa-x" aria-hidden="true"></i>201612月份，古亭地區平日vs假日之空氣品質時段折線圖。
+                                    </p>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-4 text-center air-info-1" data-aos="fade-right">
+                                    <h3 class="word10">『周間』的台北</h3>
+                                    <div class="word11">資料說明：以[24小時之空氣品質資料]做數值折線圖。<br> 舉例：星期一各時段之數值為-12月[四個]星期一[各時段數值之平均]
+                                        <br>
+                                    </div>
+                                    <div id="lineChart-01">
+                                        <iframe src="https://plotdb.io/v/chart/12502" width="100%" height="400px" frameborder="0"></iframe>
+                                    </div>
+                                    <p>
+                                        <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 古亭地區，周間時期測站折線圖。
+                                    </p>
+                                    <div id="lineChart-02">
+                                        <iframe src="https://plotdb.io/v/chart/12501" width="100%" height="400px" frameborder="0"></iframe>
+                                    </div>
+                                    <p>
+                                        <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 板橋地區，周間時期測站折線圖。
+                                    </p>
+                                </div>
+                                <hr class="style13 hidden-lg hidden-md hidden-sm">
+                                <div class="col-md-4 text-center air-info-1" data-aos="fade-left">
+                                    <h3>『周末』的台北</h3>
+                                    <div class="word11">資料說明：以[24小時之空氣品質資料]做數值折線圖。<br> 舉例：星期六各時段之數值為-12月[五個]星期六[各時段數值之平均]
+                                        <br>
+                                    </div>
+                                    <div id="lineChart-03">
+                                        <iframe src="https://plotdb.io/v/chart/12520" width="100%" height="400px" frameborder="0"></iframe>
+
+                                    </div>
+                                    <p>
+                                        <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 古亭地區，周末時期測站折線圖。
+                                    </p>
+                                    <div id="lineChart-04">
+                                        <iframe src="https://plotdb.io/v/chart/12519" width="100%" height="400px" frameborder="0"></iframe>
+
+                                    </div>
+                                    <p>
+                                        <i class="fa fa-caret-up fa-x" aria-hidden="true"></i> 板橋地區，周末時期測站折線圖。
+                                    </p>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section pop-section" id="pop-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12 text-center">
+                    <img src="img\img-pop-title.png" data-aos="zoom-in" class="center-block img-responsive " id="img-pop-title">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section mapService-section" id="mapService-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12 text-center" data-aos="fade-up">
+                    <img src="img\img-mapService-title-final.png" class="center-block img-responsive title-image" id="img-mapService-title">
+                    <p>台北跑友們最熱愛的跑步地點，究竟有什麼迷人之處?</p>
+                            <p>地點輸入</p>
+                            <!-- <input id="search_location" placeholder="慢跑點搜尋..." type="text" name="search-box"> -->
+                            <label id="subb">
+                              <select name="subs" id="search_location">
+                                <option value="中永和四號公園">中永和四號公園</option>
+                                <option value="幸福水漾公園">幸福水漾公園</option>
+                                <option value="延平河濱公園(大稻埕)">延平河濱公園(大稻埕)</option>
+                                <option value="大安森林公園">大安森林公園</option>
+                                <option value="中正紀念堂">中正紀念堂</option>
+                                <option value="國父紀念館">國父紀念館</option>
+                                <option value="台北田徑場">台北田徑場</option>
+                                <option value="228和平公園">228和平公園</option>
+                                <option value="大湖公園">大湖公園</option>
+                                <option value="景美河濱公園">景美河濱公園</option>
+                                <option value="木柵河濱公園">木柵河濱公園</option>
+                                <option value="新月橋">新月橋</option>
+                                <option value="北投公園">北投公園</option>
+                                <option value="美堤河濱公園">美堤河濱公園</option>
+                                <option value="新生公園(花博)">新生公園(花博)</option>
+                                <option value="中央藝文公園">中央藝文公園</option>
+                                <option value="百齡右岸河濱公園">百齡右岸河濱公園</option>
+                                <option value="百齡左岸河濱公園">百齡左岸河濱公園</option>
+                                <option value="圓山河濱公園">圓山河濱公園</option>
+                                <option value="大佳河濱公園">大佳河濱公園</option>
+                                <option value="迎風河濱公園">迎風河濱公園</option>
+                                <option value="彩虹河濱公園">彩虹河濱公園</option>
+                                <option value="觀山河濱公園">觀山河濱公園</option>
+                                <option value="成美右岸河濱公園">成美右岸河濱公園</option>
+                                <option value="成美左岸河濱公園">成美左岸河濱公園</option>
+                                <option value="南湖右岸河濱公園">南湖右岸河濱公園</option>
+                                <option value="南湖左岸河濱公園">南湖左岸河濱公園</option>
+                                <option value="河雙河濱公園">河雙河濱公園</option>
+                                <option value="雙溪河濱公園">雙溪河濱公園</option>
+                                <option value="富州河濱公園">富州河濱公園</option>
+                                <option value="福安河濱公園">福安河濱公園</option>
+                                <option value="關渡水岸公園">關渡水岸公園</option>
+                                <option value="龍山河濱公園">龍山河濱公園</option>
+                                <option value="雙園河濱公園">雙園河濱公園</option>
+                                <option value="華中河濱公園">華中河濱公園</option>
+                                <option value="馬場町紀念公園">馬場町紀念公園</option>
+                                <option value="中正河濱公園">中正河濱公園</option>
+                                <option value="古亭河濱公園">古亭河濱公園</option>
+                                <option value="福和河濱公園">福和河濱公園</option>
+                                <option value="道南河濱公園">道南河濱公園</option>
+                              </select>
+                            </label>
+                            <input type="button" value="run" onclick="ShowValue()">
+                            <div id="test"></div>
+                            <script>
+                                function ShowValue() {
+                                    var v = document.getElementById("search_location").value;
+                                    if (v == "大安") {
+                                        v = "大安";
+
+                                    }
+                                    var givealert = ["良好!非常適合戶外活動，出門跑跑步吧:D", "普通!可以正常戶外活動，但極敏感族群可能會產生呼吸急促和咳嗽喔:)", "對敏感族群不健康!今天空氣不是很好，一般跑友應該考慮減少戶外活動，且避免長時間的劇烈運動1.有心臟、呼吸道及心血管疾病患者、孩童及老年人，建議減少體力消耗活動及戶外活動，必要外出應配戴口罩。2.具有氣喘的人可能需增加使用吸入劑的頻率。:|",
+                                        "對所有族群不健康!今天空氣不太好，應該特別減少體力消耗，尤其是在室外喔!1.有心臟、呼吸道及心血管疾病患者、孩童及老年人，建議留在室內並減少體力消耗，必要外出應配戴口罩。2.具有氣喘的人可能需增加使用吸入劑的頻率。:(",
+                                        "非常不健康!今天空氣很差，應該盡可能減少戶外活動!1.有心臟、呼吸道及心血管疾病患者、孩童及老年人，建議留在室內並減少體力消耗，必要外出應配戴口罩。2.具有氣喘的人可能需增加使用吸入劑的頻率。:(",
+                                        "危險!今天空氣超級糟，要盡可能避免所有戶外活動喔!1.有心臟、呼吸道及心血管疾病患者、孩童及老年人，建議留在室內並減少體力消耗，必要外出應配戴口罩。2.具有氣喘的人可能需增加使用吸入劑的頻率。:(((("
+                                    ];
+
+
+                                    $.getJSON("https://spreadsheets.google.com/feeds/list/1I2UEVDgoqUdLBVNCQUMcpq_k1oamSyzkkK7auiz1w2U/1/public/values?alt=json-in-script&callback=?&q=" + document.getElementById("search_location").value,
+                                        function(
+                                            json) {
+                                            console.log("https://spreadsheets.google.com/feeds/list/1I2UEVDgoqUdLBVNCQUMcpq_k1oamSyzkkK7auiz1w2U/1/public/values?alt=json-in-script&callback=?&q=" + v);
+                                            var e = json.feed.entry,
+                                                l = e.length,
+                                                searchresult = "",
+                                                entry, i, area, location, station, comment, temperature, rain, AQI, PM2, AQI_affect, PM2_5_affect
+                                            for (i = 0; i < l; i++) {
+                                                entry = e[i];
+                                                area = entry.gsx$area.$t;
+                                                location = entry.gsx$location.$t;
+                                                station = entry.gsx$station.$t;
+                                                comment = entry.gsx$comment.$t;
+                                                temperature = entry.gsx$temperature.$t;
+                                                rain = entry.gsx$rain.$t;
+                                                aqi = entry.gsx$aqi.$t;
+                                                pm25 = entry.gsx$pm25.$t;
+                                                aqiaffect = entry.gsx$aqiaffect.$t;
+                                                // html += area + " " + location + " " + station + " " + comment + " " + temperature  + " " + rain+ " " +aqi+" "+ pm2+ " " + aqiaffect+ " "+ pm2affect+"<br/>";
+                                                searchresult += "<br/>"+"慢跑地點:"+location+"<br/>" + "目前溫度: " + temperature + "<br/>" + "降雨機率: " + rain + "%" + "<br/>" + "AQI空氣汙染指標: " + aqi + "<br/>" + "PM2.5: " + pm25 + "<br/>" + givealert[aqiaffect - 1] +
+                                                    "<br/><br/>跑友這麼說...<br/>" + comment +"<br/>" + "let's run";
+                                            }
+                                            document.getElementById("test").innerHTML = searchresult;
+                                        });
+
+                                    addressToLatLng(v);
+
+                                }
+                            </script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-8 text-center map-info-01">
+                            <div id="map-recommend" data-aos="zoom-in"></div>
+                        </div>
+                        <div class="col-md-4 text-center map-control-01">
+                            <div id="street-view" data-aos="zoom-in"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section shiny-section" id="shiny-section">
+        <!-- <img src="img\jog-air-bottom.png" class="img-responsive " id="img-top-01"> -->
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12 text-center" data-aos="fade-up">
+                    <img src="img\img-shiny-title-final.png" class="center-block img-responsive title-image" id="img-shiny-title">
+                    <p style="color:white">來看看，最近的...天氣預測!?</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- <iframe src="https://amandahaha.shinyapps.io/air_prediction/" id="shiny" data-aos="zoom-in"></iframe> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section conclusion-section" id="conclusion-section">
+        <div class="container">
+            <div data-aos="fade-up" class="row text-center">
+                <div class="col-md-12 text-center">
+                    <img src="img\img-conclusion-title-final.png" class="center-block img-responsive title-image" id="img-conclusion-title">
+                </div>
+            </div>
+            <div class="row text-center">
+                <div data-aos="zoom-out" class="col-md-12">
+                    <div class="row">
+                        <h3 class="text-center">1.為何"空氣品質"對跑者這麼重要?</h2>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8 conclu-1">
+                            <h4 class="text-center">PM2.5每增加10</h3>
+                        <ul id="skills">
+                            <li>
+                                <span>肺癌</span>
+                                <span id="j">↑12%</span>
+                                <div class="bar_container">
+
+                                    <span class="bar" data-bar='{ "color": "#f48b8b" }'>
+
+                                            <span class="pct">60%</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <span>缺血心臟病</span>
+                                <span id="j">↑16%</span>
+                                <div class="bar_container">
+                                    <span class="bar" data-bar='{ "color": "#f48b8b", "delay": 600 }'>
+                                            <span class="pct">80%</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <span>心肺疾病</span>
+                                <span id="j">↑10%</span>
+                                <div class="bar_container">
+                                    <span class="bar" data-bar='{ "color": "#f48b8b", "delay": 1200 }'>
+                                            <span class="pct">50%</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <span>死亡率</span>
+                                <span id="j">↑5%</span>
+                                <div class="bar_container">
+                                    <span class="bar" data-bar='{ "color": "#f48b8b", "delay": 1800 }'>
+                                            <span class="pct">25%</span>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                        <h4 class="text-center">資料來源:立法院公報</h4>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+            <div data-aos="zoom-out" class="row">
+                <h3 class="text-center">2.適合跑步的空氣品質時段</h2>
+                <div class="col-md-2"></div>
+                <div class="col-md-8 ">
+                    <div class="barchart-container">
+                        <div id="chart"></div>
+                    </div>
+                    <div class="splinechart-container">
+                        <iframe src="https://plotdb.io/v/chart/12504" width="100%" height="400px" frameborder="0"></iframe>
+                    </div>
+                    <h4 class="text-center">資料來源:環境保護署</h4>
+                </div>
+                <div class="col-md-2"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section group-section" id="group-section">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-12 text-center">
+                        <h1>我們這一組</h1>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-6 group-intro-1 group-intro" style="height:500px">
+                        <h3 class="text-center group-color" >組員介紹</h3>
+                        <div id="people"></div>
+                        <div id="control">
+                            <div class="button no">
+                                <a href="#" class="trigger"></a>
+                            </div>
+                            <div class="button yes">
+                                <a href="#" class="trigger"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 group-intro-2 group-intro">
+                        <h3 class="text-center group-color">活動紀錄</h3>
+                        <div class="groupphotocontainer">
+                            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                                </ol>
+                        <!-- Wrapper for slides -->
+                                <div class="carousel-inner carouselset" role="listbox">
+                                    <div class="item active">
+                                        <img src="img/groupimg/DSC_0913.JPG" alt="groupphoto">
+                                    </div>
+                                    <div class="item">
+                                        <img src="img/groupimg/DSC_0914.JPG" alt="groupphoto">
+                                    </div>
+                                    <div class="item">
+                                        <img src="img/groupimg/P1190564.JPG" alt="groupphoto">
+                                    </div>
+                                    <div class="item">
+                                        <img src="img/groupimg/DSC_0916.JPG" alt="groupphoto">
+                                    </div>
+                                    <div class="item">
+                                        <img src="img/groupimg/P1190556.JPG" alt="groupphoto">
+                                    </div>
+                                </div>
+                        <!-- Left and right controls -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-6 group-intro-3 group-intro">
+                        <h3 class="text-center group-color">教學影片</h3>
+                        <div class="row text-center">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 youtube-container">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/6hvSYbtRpgE"></iframe>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 group-intro-4 group-intro">
+                        <h3 class="text-center group-color">網站小記</h3>
+                        <div class="panel-group text-left" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">小組的話</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                    感謝Pecu,Adam,Ethan及課程中互相幫助的同學們!
+                                    <br>
+                                    <br>幾個開朗又認真的傢伙,謝謝你們這學期的陪伴~~<br>從學期初第一次見面與討論主題，學期中每次的互相學習(向大神學習)，<br>到最後的分工合作，
+                                      很幸運能夠在數位應用程式設計這門課認識你們!</div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">網站技術</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <p>主要資料來源：</p>
+                                        <ul>
+                                            <li>環保署空氣品質測站</li>
+                                            <li>交通部運輸研究所</li>
+                                        </ul>
+                                        <p>主要技術使用：</p>
+                                        <ul>
+                                            <li>網頁技術：html,css,js,jquery,bootstrap,d3,googleapi等。</li>
+                                            <li>爬蟲技術：R語言</li>
+                                            <li>資料處理：即時資料庫,QGIS進行圖資處理</li>
+                                            <li>其他相關：AI進行網站設計
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <footer class="section footer-section" id="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h1 class="text-center footer-word" id="footer-title-01">台北市慢跑熱點分析</h1>
+                    <p class="text-center footer-word" id="footer-word-01">運用資料,跑出健康。運用地圖，跑對地方。</p>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-md-12 hidden-xs text-center footer-icon-class" id="footer-icon-normal">
+
+                            <a target="_blank" href="https://www.facebook.com/ntu.csx/?fref=ts"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                            <a target="_blank" href="https://github.com/KBJIYU/csgroup7-jogging-data"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 hidden-lg hidden-md hidden-sm text-center" id="footer-icon-xs">
+
+                            <a target="_blank" href="https://www.facebook.com/ntu.csx/?fref=ts"><i class="fa fa-3x fa-fw fa-facebook text-inverse"></i></a>
+                            <a target="_blank" href="https://github.com/KBJIYU/csgroup7-jogging-data"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 text-center">
+                    <img src="img\group-mark-test-02.png" class="img-responsive" id="footer-groupimage">
+                </div>
+            </div>
+        </div>
+        <!-- <a id="to-top" href="#home-page" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a> -->
+        <a id="to-top" href="#home-page" class="btn btn-dark btn-lg"><img src="img/totopbear-02.png" height="70px" width="auto" </a>
+    </footer>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- 首頁影片video js -->
+    <!-- <script src="js/videotest.js"></script> -->
+    <!-- 地圖geojson js -->
+    <script type="text/javascript" src="js/tpeArea.geojson"></script>
+    <script type="text/javascript" src="js/tpeMrt.geojson"></script>
+    <script type="text/javascript" src="js/tpeVillage.geojson"></script>
+    <script type="text/javascript" src="js/tperiverpark.geojson"></script>
+    <!-- 地圖map區 js -->
+    <!-- <script type="text/javascript" src="js/map-01.js"></script> -->
+    <script type="text/javascript" src="js/map-03.js"></script>
+    <!-- 地圖search區 js -->
+    <script type="text/javascript" src="js/google-map-location.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!-- 圖表graph區 js -->
+    <script type="text/javascript " src="js/bar2.js "></script>
+    <!-- 動畫js -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/img-light-animation.js" type="text/javascript"></script>
+    <script src="js/grouptinder.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript " src="js/photo2.js "></script> -->
+    <!-- snow-js(flurry.js) -->
+    <script type="text/javascript" src="js/jquery.flurry.js"></script>
+    <!-- scroll speed -->
+    <!-- <script src="js/jquery.nicescroll.js"></script> -->
+    <script src="js/aos.js"></script>
+    <!-- cnavaschart.js -->
+    <script src="js/d3pie.min.js"></script>
+    <script src="js/piechart01.js"></script>
+    <script src="js/piechart02.js"></script>
+    <script src="js/piechart03.js"></script>
+    <script src="js/piechart04.js"></script>
+    <script src="js/c3barchart01.js"></script>
+    <!-- <script type="text/javascript" src="js/graph-01.js"></script> -->
+    <!-- 內建 JavaScript -->
+    <script>
+        AOS.init({
+            duration: 1200,
+        });
+        $(window).on('load', function() { // makes sure the whole site is loaded
+            $('#loader').fadeOut(); // will first fade out the loading animation
+            $('#loader-wrapper').delay(500).fadeOut('slow'); // will fade out the white DIV that covers the website.
+            $('body').delay(500).css({
+                'overflow': 'visible'
+            });
+        });
+        // $(document).ready(function() {
+        //     $("html").niceScroll();
+        // });
+
+        // navbar
+        (function($) {
+            $(document).ready(function() {
+                // hide .navbar first
+                $(".navbar").hide();
+                // fade in .navbar
+                $(function() {
+                    $(window).scroll(function() {
+                        // set distance user needs to scroll before we start fadeIn
+                        if ($(this).scrollTop() > 250) {
+                            $('.navbar').fadeIn();
+                        } else {
+                            $('.navbar').fadeOut();
+                        }
+                    });
+                });
+            });
+        }(jQuery));
+        // snow effect
+        $(document).ready(function() {
+            $('.home-page').flurry();
+        });
+        //switch-button change theme
+        $('#switch-1').change(function() {
+            if (this.checked) {
+                $(".home-page").css("background-color", "#103E55");
+                $("#img-title").attr("src", "img/jog-title-night.svg");
+                $("#img-grass").attr("src", "img/jog-grass-night.png");
+                $("#img-jogger").attr("src", "img/jog-2people-night.png");
+                return;
+            } else {
+                $(".home-page").css("background-color", "#93d0f2");
+                $("#img-title").attr("src", "img/jog-title-day.svg");
+                $("#img-grass").attr("src", "img/jog-grass-day.png");
+                $("#img-jogger").attr("src", "img/jog-2people-day.png");
+                return;
+            }
+        });
+        // Closes the sidebar menu
+        $("#menu-close").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Closes the sidebar menu
+        $("#sidebar-wrapper").mouseleave(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+        // Scrolls to the selected menu item on the page
+        $(function() {
+            $('a[href*=#]:not([href=#],[data-toggle],[data-target],[data-slide])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
+        //#to-top button appears after scrolling
+        var fixed = false;
+        $(document).scroll(function() {
+            if ($(this).scrollTop() > 250) {
+                if (!fixed) {
+                    fixed = true;
+                    // $('#to-top').css({position:'fixed', display:'block'});
+                    $('#to-top').show("slow", function() {
+                        $('#to-top').css({
+                            position: 'fixed',
+                            display: 'inline-block'
+                        });
+                    });
+                }
+            } else {
+                if (fixed) {
+                    fixed = false;
+                    $('#to-top').hide("slow", function() {
+                        $('#to-top').css({
+                            display: 'none'
+                        });
+                    });
+                }
+            }
+        });
+        var animateTime01 = 800;
+        // #to-top的換位置功能
+        $("#to-top").click(function() {
+            $("#to-top").animate({
+                bottom: "500px"
+            }, animateTime01, function() {
+                $('#to-top').removeAttr('style')
+            })
+        });
+
+        var aboutItemAnimatetime = 150;
+        //about-info-dislay js
+        $(".about-item-1").hover(function() {
+                $(".about-info-item").hide();
+                $(".about-info-item-1").show();
+                $(".title-info").animate({
+                    backgroundColor: "#ffed00"
+                }, aboutItemAnimatetime);
+                $("#about-sun-item").css("color", "#ffed00");
+            })
+            // https://goo.gl/YdJNP9  參考一下css :after and :before rules aren't part of the DOM
+        $(".about-item-2").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-2").show();
+            $(".title-info").animate({
+                backgroundColor: "#C3272B"
+            }, aboutItemAnimatetime)
+            $("#about-mark-item").css("color", "#C3272B");
+        })
+        $(".about-item-3").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-3").show();
+            $(".title-info").animate({
+                backgroundColor: "#1F4788"
+            }, aboutItemAnimatetime)
+            $("#about-air-item").css("color", "#1F4788");
+        })
+        $(".about-item-4").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-4").show();
+            $(".title-info").animate({
+                backgroundColor: "#26A65B"
+            }, aboutItemAnimatetime)
+            $("#about-chart-item").css("color", "#26A65B");
+        })
+        $(".about-item-5").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-5").show();
+            $(".title-info").animate({
+                backgroundColor: "#ec8e00"
+            }, aboutItemAnimatetime)
+            $("#about-shiny-item").css("color", "#ec8e00");
+        })
+        $(".about-item-6").hover(function() {
+            $(".about-info-item").hide();
+            $(".about-info-item-6").show();
+            $(".title-info").animate({
+                backgroundColor: "#b669b3"
+            }, aboutItemAnimatetime)
+            $("#about-conclusion-item").css("color", "#b669b3");
+        })
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAB6wyswnvKuR00T4u3uqN2BDNB--6q5lU&callback=initMap" async defer></script>
+    <script>
+        //街景api #street-view
+        var panorama;
+
+        function initialize() {
+            var LatLng1 = {
+                lat: 24.9877249,
+                lng: 121.5591697
+            }; //木柵公園
+            var LatLng2 = {
+                lat: 25.0293227,
+                lng: 121.5359793
+            }; //大安森林公園
+            var LatLng3 = {
+                lat: 25.0346522,
+                lng: 121.52182649999997
+            }; //台灣民主紀念園區
+            var LatLng4 = {
+                lat: 25.08496576991854,
+                lng: 121.51543512421819
+            }; //百齡河濱公園
+            var LatLng5 = {
+                lat: 25.077720121388957,
+                lng: 121.53331257863037
+            }; //圓山河濱公園
+            var LatLng6 = {
+                lat: 25.074734477271235,
+                lng: 121.5616761977487
+            }; //美堤河濱公園
+            var taida = {
+                lat: 25.0169587,
+                lng: 121.5338507
+            }; //ntu
+
+            panorama = new google.maps.StreetViewPanorama(
+                document.getElementById('street-view'), {
+                    position: LatLng2,
+                    pov: {
+                        heading: 65,
+                        pitch: 0
+                    },
+                    zoom: 1
+                });
+            //recommend map
+
+            var map = new google.maps.Map(document.getElementById('map-recommend'), {
+                zoom: 12,
+                center: LatLng2
+            });
+
+            var marker1 = new google.maps.Marker({
+                position: LatLng1,
+                map: map,
+                title: "木柵公園"
+            });
+            var marker2 = new google.maps.Marker({
+                position: LatLng2,
+                map: map,
+                title: "大安森林公園"
+            });
+            var marker3 = new google.maps.Marker({
+                position: LatLng3,
+                map: map,
+                title: "台灣民主紀念園區"
+            });
+            var marker4 = new google.maps.Marker({
+                position: LatLng4,
+                map: map,
+                title: "百齡河濱公園"
+            });
+            var marker5 = new google.maps.Marker({
+                position: LatLng5,
+                map: map,
+                title: "圓山河濱公園"
+            });
+            var marker6 = new google.maps.Marker({
+                position: LatLng6,
+                map: map,
+                title: "美堤河濱公園"
+            });
+            //marker clicker
+            map.addListener('center_changed', function() {
+                // 3 seconds after the center of the map has changed, pan back to the
+                // marker.
+                window.setTimeout(function() {
+                    map.panTo(marker3.getPosition());
+                }, 3000);
+            });
+            marker1.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker1.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng1,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker2.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker2.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng2,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker3.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker3.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng3,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker4.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker4.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng4,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker5.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker5.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng5,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+            marker6.addListener('click', function() {
+                map.setZoom(12);
+                map.setCenter(marker6.getPosition());
+                panorama = new google.maps.StreetViewPanorama(
+                    document.getElementById('street-view'), {
+                        position: LatLng6,
+                        pov: {
+                            heading: 65,
+                            pitch: 0
+                        },
+                        zoom: 1
+                    });
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRmRLd_EOocye07JIZrJwR5GTlFFb2ekQ&signed_in=true&callback=initialize"></script>
+
+</body>
+
+</html>
