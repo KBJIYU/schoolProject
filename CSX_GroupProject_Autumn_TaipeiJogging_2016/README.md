@@ -1,4 +1,8 @@
 # 2016 CS+X Class Project
+
+<br><a href="https://kbjiyu.github.io/schoolProject/CSX_GroupProject_Autumn_TaipeiJogging_2016/"><img src="https://github.com/KBJIYU/schoolProject/blob/master/CSX_GroupProject_Autumn_TaipeiJogging_2016/page_1.JPG" 
+alt="CSX_GroupProject_Autumn_TaipeiJogging_2016 Page" width="921" height="500" border="10" /></a>
+
 [![gitbook](https://rawgit.com/aleen42/badges/master/src/gitbook_1.svg)](https://cdn.rawgit.com/aleen42/badges/master/src/gitbook_1.svg)
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php) 
@@ -19,6 +23,3 @@
 * Data Scraping techs: **R script**.
 * Data Processing: **QGIS**, **Google files** as on-time database.
 * Web Design: **Adobe Illustrator**.
-
-<br><a href="https://kbjiyu.github.io/schoolProject/CSX_GroupProject_Autumn_TaipeiJogging_2016/"><img src="https://github.com/KBJIYU/schoolProject/blob/master/CSX_GroupProject_Autumn_TaipeiJogging_2016/page_1.JPG" 
-alt="CSX_GroupProject_Autumn_TaipeiJogging_2016 Page" width="921" height="500" border="10" /></a>
