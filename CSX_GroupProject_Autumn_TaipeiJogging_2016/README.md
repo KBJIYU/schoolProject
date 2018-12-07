@@ -5,7 +5,7 @@
 [![CS+X Badge](https://img.shields.io/badge/CS%2BX-Building-orange.svg)](https://img.shields.io/badge/CS%2BX-Building-orange.svg)
 
 ## About this github project
-* Live Demo Webpage Link --> `https://kbjiyu.github.io/CSX_GroupProject_TaipeiJogging_2016/`
+* Live Demo Webpage Link --> `https://kbjiyu.github.io/schoolProject/CSX_GroupProject_Autumn_TaipeiJogging_2016/`
 * Team project contributed by **kbjiyu**, **creachang**, **chester11027**, **amandahaha**, **hannahchiu**, **f5130052**.
 * This class project was built in 2016, **NTU-CSX Data Anlysis and Visulization course**.
 
@@ -20,5 +20,5 @@
 * Data Processing: **QGIS**, **Google files** as on-time database.
 * Web Design: **Adobe Illustrator**.
 
-<br><a href="https://kbjiyu.github.io/CSX_GroupProject_TaipeiJogging_2016/"><img src="https://github.com/KBJIYU/CSX_GroupProject_TaipeiJogging_2016/blob/master/page_1.JPG" 
-alt="Coserving Login Page" width="921" height="500" border="10" /></a>
+<br><a href="https://kbjiyu.github.io/schoolProject/CSX_GroupProject_Autumn_TaipeiJogging_2016/"><img src="https://github.com/KBJIYU/schoolProject/blob/master/CSX_GroupProject_Autumn_TaipeiJogging_2016/page_1.JPG" 
+alt="CSX_GroupProject_Autumn_TaipeiJogging_2016 Page" width="921" height="500" border="10" /></a>
