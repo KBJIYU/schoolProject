@@ -8,9 +8,9 @@
 * Hi, this class project was built in 2017, NTU-CSX Nodejs & MongoDB course.
 * Thanks to f5130052 and hannahchiu, for our group idea discussion!
 
-<br><img src="https://github.com/KBJIYU/CSX_Project_Coserving_2017/blob/master/page_1.JPG" 
+<br><img src="./page_1.JPG" 
 alt="Coserving Login Page" width="368.4" height="200" border="10" /></a>
-<img src="https://github.com/KBJIYU/CSX_Project_Coserving_2017/blob/master/page_2.JPG" 
+<img src="./page_2.JPG" 
 alt="Coserving Event Page" width="368.4" height="200" border="10" /></a>
 
 <br>
